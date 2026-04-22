@@ -365,7 +365,15 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
             showMessage('error', 'Contraseña incorrecta');
         }
     } else {
-        showMessage('error', 'Usuario no encontrado');
+        // Si el usuario no existe, crearlo automáticamente y entrar
+        const newUser = {
+            username: username,
+            email: '',
+            password: password,
+            createdAt: new Date().toISOString()
+        };
+        localStorage.setItem('user_' + username, JSON.stringify(newUser));
+        login(username);
     }
 });
 
@@ -391,11 +399,11 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
     };
     
     localStorage.setItem('user_' + username, JSON.stringify(newUser));
-    showMessage('success', 'Cuenta creada exitosamente. Ahora puedes iniciar sesión.');
+    showMessage('success', '¡Cuenta creada! Entrando...');
     
-    // Limpiar formulario y cambiar a login
+    // Entrar directamente después de registrarse
     document.getElementById('registerForm').reset();
-    setTimeout(() => switchTab('login'), 2000);
+    setTimeout(() => login(username), 1000);
 });
 
 function showMessage(type, text) {

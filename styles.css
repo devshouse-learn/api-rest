@@ -54,7 +54,7 @@ body {
 /* ===========================
    PANTALLA DE LOGIN
    =========================== */
-#loginScreen {
+#loginScreen.active {
     min-height: 100vh;
     display: flex;
     align-items: center;
