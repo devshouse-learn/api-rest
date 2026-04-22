@@ -536,7 +536,7 @@ function loadQuiz(lessonNum) {
     const quizKey = 'quiz' + lessonNum;
     const quizContainer = document.getElementById(quizKey);
     
-    if (!quizContainer || quizContainer.hasChildNodes()) return;
+    if (!quizContainer || quizContainer.querySelector('.question')) return;
     
     const questions = quizData[quizKey];
     if (!questions) return;
